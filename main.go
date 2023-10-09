@@ -35,9 +35,16 @@ func main() {
 		},
 	}
 	// jim.updateName("Jimmy")
-	jimPointer := &jim             // pointer style
-	jimPointer.updateName("Jimmy") // pointer style
+
+	// first way to use pointer
+	// jimPointer := &jim             // pointer style, "&" to give address to the memory localization
+	// jimPointer.updateName("Jimmy") // pointer style
+	// jim.print()
+
+	//shortcut pointer second way
+	jim.updateName("jimmy")
 	jim.print()
+
 }
 
 // func (p person) updateName (newFirstName string) { // to update Name
@@ -45,9 +52,12 @@ func main() {
 // }
 
 // update Name function pointer style
-func (pointerToPerson *person) updateName(newFirstName string) {
-	(*pointerToPerson).firstName = newFirstName
+func (pointerToPerson *person) updateName(newFirstName string) { //"*person" this is description it means we are working with a pointer to a person
+	(*pointerToPerson).firstName = newFirstName // "*pointerToPerson" this is an operator - it means we want to manipulate the value the pointer is referencing
 }
+
+// In go we can not change a value by the classic way : because only the copy will be modified not the original it is for that we need to use pointer !
+// For updating : int, float, string, bool, structs
 
 func (p person) print() { // to print
 	fmt.Printf("%+v", p)
